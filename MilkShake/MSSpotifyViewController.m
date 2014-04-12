@@ -16,6 +16,7 @@ static NSString * const kCallbackURL = @"spotify-ios-sdk-beta://callback";
 static NSString * const kTokenSwapURL = @"http://localhost:1234/swap";
 
 @interface MSSpotifyViewController ()
+@property (nonatomic, strong) SPTSession *session;
 @end
 
 @implementation MSSpotifyViewController
@@ -84,7 +85,7 @@ static NSString * const kTokenSwapURL = @"http://localhost:1234/swap";
                  NSLog(@"*** Auth error: %@", error);
                  return;
              }
-             
+             self.session = session;
              // Call the -playUsingSession: method to play a track
              [self playUsingSession:session];
          }];
@@ -123,6 +124,29 @@ static NSString * const kTokenSwapURL = @"http://localhost:1234/swap";
                             }];
     }];
     
+}
+
+- (void)playItemAtURI:(SPTPartialAlbum *)partialAlbum withOffset:(NSInteger)offset
+{
+    // Create a new track player if needed
+    if (self.trackPlayer == nil) {
+        self.trackPlayer = [[SPTTrackPlayer alloc] initWithCompanyName:@"Your-Company-Name"
+                                                               appName:@"MilkShake"];
+    }
+    
+    [SPTRequest requestItemFromPartialObject:partialAlbum
+                                 withSession:nil
+                                    callback:^(NSError *error, id object) {
+                                        if (error != nil) {
+                                            NSLog(@"*** Album lookup got error %@", error);
+                                            return;
+                                        }
+                                        if ([object isKindOfClass:[SPTAlbum class]]) {
+                                            SPTAlbum *album = (SPTAlbum *)object;
+                                            [self.trackPlayer playTrackProvider:album fromIndex:offset];
+                                        }
+                                        
+                                    }];
 }
 
 -(void)closeView

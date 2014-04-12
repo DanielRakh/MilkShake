@@ -9,6 +9,7 @@
 #import <UIKit/UIKit.h>
 
 @class SPTTrackPlayer;
+@class SPTPartialAlbum;
 
 @interface MSSpotifyViewController : UIViewController
 
@@ -16,4 +17,5 @@
 
 +(MSSpotifyViewController *)sharedController;
 - (BOOL)localAuthCallback:(NSURL *)url;
+- (void)playItemAtURI:(SPTPartialAlbum *)partialAlbum withOffset:(NSInteger)offset;
 @end

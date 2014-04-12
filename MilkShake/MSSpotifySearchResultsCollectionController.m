@@ -67,6 +67,15 @@
     return reusableview;
 }
 
+#pragma mark - UICollectionViewDelegate Protocol
+- (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
+{
+    SPTTrack *track = self.searchResults[indexPath.row];
+    SPTPartialAlbum *album = track.album;
+    NSInteger offset = track.trackNumber;
+    [[MSSpotifyViewController sharedController] playItemAtURI:album withOffset:offset];
+}
+
 #pragma mark - UISearchBar delegate
 - (void)searchBar:(UISearchBar *)searchBar textDidChange:(NSString *)searchText
 {
