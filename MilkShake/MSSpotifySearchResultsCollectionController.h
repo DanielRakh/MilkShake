@@ -1,5 +1,5 @@
 //
-//  MSSpoitifySongCollectionView.h
+//  MSSpotifySearchResultsCollectionController.h
 //  MilkShake
 //
 //  Created by David Weissler on 4/12/14.
@@ -8,6 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface MSSpoitifySongCollectionView : UICollectionView
+@interface MSSpotifySearchResultsCollectionController : UICollectionViewController
 
 @end
