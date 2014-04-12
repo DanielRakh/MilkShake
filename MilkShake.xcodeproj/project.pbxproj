@@ -10,6 +10,8 @@
 		613F22ED18F9A39E00492EF4 /* Spotify.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 613F22EC18F9A39E00492EF4 /* Spotify.framework */; };
 		613F22EF18F9A3DA00492EF4 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 613F22EE18F9A3DA00492EF4 /* AVFoundation.framework */; };
 		613F22F518F9A6AD00492EF4 /* MSSpotifyViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 613F22F418F9A6AD00492EF4 /* MSSpotifyViewController.m */; };
+		6178395A18F9BBDB00FD65CF /* SpotifyStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6178395918F9BBDB00FD65CF /* SpotifyStoryboard.storyboard */; };
+		6178395D18F9BD0500FD65CF /* MSSpoitifySongCollectionView.m in Sources */ = {isa = PBXBuildFile; fileRef = 6178395C18F9BD0500FD65CF /* MSSpoitifySongCollectionView.m */; };
 		8EC503C918F99FA200A96867 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8EC503C818F99FA200A96867 /* Foundation.framework */; };
 		8EC503CB18F99FA200A96867 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8EC503CA18F99FA200A96867 /* CoreGraphics.framework */; };
 		8EC503CD18F99FA200A96867 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8EC503CC18F99FA200A96867 /* UIKit.framework */; };
@@ -41,6 +43,9 @@
 		613F22EE18F9A3DA00492EF4 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
 		613F22F318F9A6AD00492EF4 /* MSSpotifyViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MSSpotifyViewController.h; sourceTree = "<group>"; };
 		613F22F418F9A6AD00492EF4 /* MSSpotifyViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MSSpotifyViewController.m; sourceTree = "<group>"; };
+		6178395918F9BBDB00FD65CF /* SpotifyStoryboard.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = SpotifyStoryboard.storyboard; sourceTree = "<group>"; };
+		6178395B18F9BD0500FD65CF /* MSSpoitifySongCollectionView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MSSpoitifySongCollectionView.h; sourceTree = "<group>"; };
+		6178395C18F9BD0500FD65CF /* MSSpoitifySongCollectionView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MSSpoitifySongCollectionView.m; sourceTree = "<group>"; };
 		8EC503C518F99FA200A96867 /* MilkShake.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MilkShake.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8EC503C818F99FA200A96867 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		8EC503CA18F99FA200A96867 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -93,6 +98,9 @@
 			children = (
 				613F22F318F9A6AD00492EF4 /* MSSpotifyViewController.h */,
 				613F22F418F9A6AD00492EF4 /* MSSpotifyViewController.m */,
+				6178395918F9BBDB00FD65CF /* SpotifyStoryboard.storyboard */,
+				6178395B18F9BD0500FD65CF /* MSSpoitifySongCollectionView.h */,
+				6178395C18F9BD0500FD65CF /* MSSpoitifySongCollectionView.m */,
 			);
 			name = Spotify;
 			sourceTree = "<group>";
@@ -251,6 +259,7 @@
 			files = (
 				8EC503E118F99FA200A96867 /* Images.xcassets in Resources */,
 				8EC503D318F99FA200A96867 /* InfoPlist.strings in Resources */,
+				6178395A18F9BBDB00FD65CF /* SpotifyStoryboard.storyboard in Resources */,
 				8EC503DC18F99FA200A96867 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -270,6 +279,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6178395D18F9BD0500FD65CF /* MSSpoitifySongCollectionView.m in Sources */,
 				8EC503DF18F99FA200A96867 /* ViewController.m in Sources */,
 				613F22F518F9A6AD00492EF4 /* MSSpotifyViewController.m in Sources */,
 				8EC503D918F99FA200A96867 /* AppDelegate.m in Sources */,
