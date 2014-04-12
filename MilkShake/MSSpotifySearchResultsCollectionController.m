@@ -50,6 +50,8 @@
 {
     MSSongCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"Cell" forIndexPath:indexPath];
     [cell setBackgroundColor:[UIColor blueColor]];
+    SPTTrack *track = (SPTTrack *)self.searchResults[indexPath.row];
+    [cell.songTitle setText:track.name];
     return cell;
 }
 
@@ -85,6 +87,7 @@
                                   if ([object isKindOfClass:[NSArray class]]) {
                                       [self setSearchResults:object];
                                       [self.collectionView reloadData];
+                                      NSLog(@"%@",object);
                                   }
                               }];
 }

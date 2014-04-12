@@ -10,5 +10,6 @@
 
 @interface MSSongCollectionViewCell : UICollectionViewCell
 @property (weak, nonatomic) IBOutlet UIImageView *image;
+@property (weak, nonatomic) IBOutlet UILabel *songTitle;
 
 @end
