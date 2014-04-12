@@ -405,7 +405,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "MilkShake/MilkShake-Prefix.pch";
 				INFOPLIST_FILE = "MilkShake/MilkShake-Info.plist";
-				OTHER_LDFLAGS = "-objC";
+				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
 			};
@@ -423,7 +423,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "MilkShake/MilkShake-Prefix.pch";
 				INFOPLIST_FILE = "MilkShake/MilkShake-Info.plist";
-				OTHER_LDFLAGS = "-objC";
+				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
 			};
