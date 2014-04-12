@@ -7,6 +7,7 @@
 //
 
 #import "MSSpotifySearchResultsCollectionController.h"
+#import "MSSongCollectionViewCell.h"
 
 @interface MSSpotifySearchResultsCollectionController ()
 
@@ -42,7 +43,7 @@
 
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath
 {
-    UICollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"Cell" forIndexPath:indexPath];
+    MSSongCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"Cell" forIndexPath:indexPath];
     [cell setBackgroundColor:[UIColor blueColor]];
     return cell;
 }
