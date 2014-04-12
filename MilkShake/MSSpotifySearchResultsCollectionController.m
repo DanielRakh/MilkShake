@@ -78,7 +78,8 @@
 {
     SPTTrack *track = self.searchResults[indexPath.row];
     SPTPartialAlbum *album = track.album;
-    NSInteger offset = track.trackNumber;
+    NSInteger offset = track.trackNumber - 1;
+    offset = (offset < 0) ? 0 : offset;
     [[MSSpotifyViewController sharedController] playItemAtURI:album withOffset:offset];
 }
 
