@@ -8,7 +8,11 @@
 
 #import <UIKit/UIKit.h>
 
+@class SPTTrackPlayer;
+
 @interface MSSpotifyViewController : UIViewController
+
+@property (nonatomic, strong) SPTTrackPlayer *trackPlayer;
 
 +(MSSpotifyViewController *)sharedController;
 - (BOOL)localAuthCallback:(NSURL *)url;

@@ -16,7 +16,6 @@ static NSString * const kCallbackURL = @"spotify-ios-sdk-beta://callback";
 static NSString * const kTokenSwapURL = @"http://localhost:1234/swap";
 
 @interface MSSpotifyViewController ()
-@property (nonatomic, readwrite) SPTTrackPlayer *trackPlayer;
 @end
 
 @implementation MSSpotifyViewController
@@ -95,8 +94,8 @@ static NSString * const kTokenSwapURL = @"http://localhost:1234/swap";
     return NO;
 }
 
--(void)playUsingSession:(SPTSession *)session {
-    
+-(void)playUsingSession:(SPTSession *)session
+{
     // Create a new track player if needed
     if (self.trackPlayer == nil) {
         self.trackPlayer = [[SPTTrackPlayer alloc] initWithCompanyName:@"Your-Company-Name"

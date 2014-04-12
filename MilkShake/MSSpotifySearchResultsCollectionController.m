@@ -9,9 +9,12 @@
 #import "MSSpotifySearchResultsCollectionController.h"
 #import "MSSongCollectionViewCell.h"
 #import "MSCollectionHeaderView.h"
+#import "MSSpotifyViewController.h"
+#import <Spotify/Spotify.h>
 
 @interface MSSpotifySearchResultsCollectionController ()
 @property (nonatomic, strong) MSCollectionHeaderView *headerView;
+@property (nonatomic, strong) NSArray *searchResults;
 @end
 
 @implementation MSSpotifySearchResultsCollectionController
@@ -21,6 +24,7 @@
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
         // Custom initialization
+        self.searchResults = [NSArray array];
     }
     return self;
 }
@@ -39,7 +43,7 @@
 
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section
 {
-    return 5;
+    return self.searchResults.count;
 }
 
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath
@@ -70,6 +74,19 @@
 - (void)searchBarSearchButtonClicked:(UISearchBar *)searchBar
 {
     [self.headerView.searchBar resignFirstResponder];
+    
+    NSString *searchString = searchBar.text;
+    [SPTRequest performSearchWithQuery:searchString ofQueryType:SPTQueryTypeTrack withSession:nil
+                              callback:^(NSError *error, id object) {
+                                  if (error != nil) {
+                                      NSLog(@"*** Album lookup got error %@", error);
+                                      return;
+                                  }
+                                  if ([object isKindOfClass:[NSArray class]]) {
+                                      [self setSearchResults:object];
+                                      [self.collectionView reloadData];
+                                  }
+                              }];
 }
 
 @end
