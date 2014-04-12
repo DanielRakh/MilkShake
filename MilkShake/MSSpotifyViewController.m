@@ -27,6 +27,12 @@
 {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+    [self.view setBackgroundColor:[UIColor redColor]];
+    
+    UIButton *closeButton = [[UIButton alloc] initWithFrame:CGRectMake(100, 100, 100, 15)];
+    [closeButton setTitle:@"Close" forState:UIControlStateNormal];
+    [self.view addSubview:closeButton];
+    [closeButton addTarget:self action:@selector(closeView)forControlEvents:UIControlEventTouchUpInside];
 }
 
 - (void)didReceiveMemoryWarning
@@ -46,4 +52,9 @@
 }
 */
 
+-(void)closeView
+{
+    [self.presentingViewController dismissViewControllerAnimated:YES
+                                                      completion:^{}];
+}
 @end

@@ -7,6 +7,7 @@
 //
 
 #import "ViewController.h"
+#import "MSSpotifyViewController.h"
 
 @interface ViewController ()
 
@@ -24,6 +25,15 @@
 {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+- (IBAction)spotifyButtonDidTouch:(UIButton *)sender
+{
+    MSSpotifyViewController *spotifyVC = [[MSSpotifyViewController alloc] init];
+    [self presentViewController:spotifyVC
+                       animated:YES
+                     completion:^{
+                     }];
 }
 
 @end
