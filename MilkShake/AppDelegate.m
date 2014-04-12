@@ -7,8 +7,10 @@
 //
 
 #import "AppDelegate.h"
+#import "MSSpotifyViewController.h"
 
 @implementation AppDelegate
+
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
@@ -43,4 +45,11 @@
     // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
 }
 
+
+
+- (BOOL)application:(UIApplication *)application openURL:(NSURL *)url sourceApplication:(NSString *)sourceApplication annotation:(id)annotation
+{
+    
+    return [[MSSpotifyViewController sharedController] localAuthCallback:url];
+}
 @end

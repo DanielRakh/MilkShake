@@ -29,8 +29,7 @@
 
 - (IBAction)spotifyButtonDidTouch:(UIButton *)sender
 {
-    MSSpotifyViewController *spotifyVC = [[MSSpotifyViewController alloc] init];
-    [self presentViewController:spotifyVC
+    [self presentViewController:[MSSpotifyViewController sharedController]
                        animated:YES
                      completion:^{
                      }];

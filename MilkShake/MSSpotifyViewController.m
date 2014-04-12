@@ -7,7 +7,7 @@
 //
 
 #import "MSSpotifyViewController.h"
-#import "AppDelegate.h"
+//#import "AppDelegate.h"
 #import <Spotify/Spotify.h>
 
 // Constants
@@ -20,6 +20,19 @@ static NSString * const kTokenSwapURL = @"http://localhost:1234/swap";
 @end
 
 @implementation MSSpotifyViewController
+
++(MSSpotifyViewController *)sharedController
+{
+    static MSSpotifyViewController *shared;
+    @synchronized(self)
+    {
+        if(!shared)
+        {
+            shared = [[MSSpotifyViewController alloc]init];
+        }
+    }
+    return shared;
+}
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -53,9 +66,8 @@ static NSString * const kTokenSwapURL = @"http://localhost:1234/swap";
 
 }
 
--(BOOL)openURL:(NSURL *)url sourceApplication:(NSString *)sourceApplication annotation:(id)annotation {
-    
-    // Ask SPTAuth if the URL given is a Spotify authentication callback
+- (BOOL)localAuthCallback:(NSURL *)url
+{
     if ([[SPTAuth defaultInstance] canHandleURL:url withDeclaredRedirectURL:[NSURL URLWithString:kCallbackURL]]) {
         
         // Call the token swap service to get a logged in session

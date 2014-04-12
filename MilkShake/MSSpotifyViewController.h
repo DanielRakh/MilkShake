@@ -10,4 +10,6 @@
 
 @interface MSSpotifyViewController : UIViewController
 
++(MSSpotifyViewController *)sharedController;
+- (BOOL)localAuthCallback:(NSURL *)url;
 @end
