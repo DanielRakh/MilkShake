@@ -7,8 +7,8 @@
 //
 
 #import "MSSpotifyViewController.h"
-//#import "AppDelegate.h"
 #import <Spotify/Spotify.h>
+#import "MSSpotifySearchResultsCollectionController.h"
 
 // Constants
 static NSString * const kClientId = @"spotify-ios-sdk-beta";
@@ -68,6 +68,11 @@ static NSString * const kTokenSwapURL = @"http://localhost:1234/swap";
 
 - (BOOL)localAuthCallback:(NSURL *)url
 {
+    MSSpotifySearchResultsCollectionController *searchController = [UIStoryboard storyboardWithName:@"SpotifyStoryboard" bundle:[NSBundle mainBundle]].instantiateInitialViewController;
+    
+    [self presentViewController:searchController animated:YES completion:^{}];
+    
+    
     if ([[SPTAuth defaultInstance] canHandleURL:url withDeclaredRedirectURL:[NSURL URLWithString:kCallbackURL]]) {
         
         // Call the token swap service to get a logged in session
