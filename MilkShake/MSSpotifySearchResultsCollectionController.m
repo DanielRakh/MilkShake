@@ -51,7 +51,13 @@
     MSSongCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"Cell" forIndexPath:indexPath];
     [cell setBackgroundColor:[UIColor blueColor]];
     SPTTrack *track = (SPTTrack *)self.searchResults[indexPath.row];
-    [cell.songTitle setText:track.name];
+    SPTPartialArtist *partialArtist = track.artists[0];
+
+    NSString *title = track.name;
+    NSString *artist = partialArtist.name;
+    NSString *cellTitle = [artist stringByAppendingString:@" - "];
+    cellTitle = [cellTitle stringByAppendingString:title];
+    [cell.songTitle setText:cellTitle];
     return cell;
 }
 
@@ -87,7 +93,7 @@
     [self.headerView.searchBar resignFirstResponder];
     
     NSString *searchString = searchBar.text;
-    [SPTRequest performSearchWithQuery:searchString ofQueryType:SPTQueryTypeTrack withSession:nil
+    [SPTRequest performSearchWithQuery:searchString queryType:SPTQueryTypeTrack session:nil
                               callback:^(NSError *error, id object) {
                                   if (error != nil) {
                                       NSLog(@"*** Album lookup got error %@", error);

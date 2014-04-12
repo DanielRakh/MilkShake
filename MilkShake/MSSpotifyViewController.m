@@ -87,7 +87,7 @@ static NSString * const kTokenSwapURL = @"http://localhost:1234/swap";
              }
              self.session = session;
              // Call the -playUsingSession: method to play a track
-             [self playUsingSession:session];
+             //[self playUsingSession:session];
          }];
         return YES;
     }
@@ -134,19 +134,29 @@ static NSString * const kTokenSwapURL = @"http://localhost:1234/swap";
                                                                appName:@"MilkShake"];
     }
     
-    [SPTRequest requestItemFromPartialObject:partialAlbum
-                                 withSession:nil
-                                    callback:^(NSError *error, id object) {
-                                        if (error != nil) {
-                                            NSLog(@"*** Album lookup got error %@", error);
-                                            return;
-                                        }
-                                        if ([object isKindOfClass:[SPTAlbum class]]) {
-                                            SPTAlbum *album = (SPTAlbum *)object;
-                                            [self.trackPlayer playTrackProvider:album fromIndex:offset];
-                                        }
-                                        
-                                    }];
+    [self.trackPlayer enablePlaybackWithSession:self.session callback:^(NSError *error) {
+        
+        if (error != nil) {
+            NSLog(@"*** Enabling playback got error: %@", error);
+            return;
+        }
+        
+        
+        [SPTRequest requestItemFromPartialObject:partialAlbum
+                                     withSession:nil
+                                        callback:^(NSError *error, id object) {
+                                            if (error != nil) {
+                                                NSLog(@"*** Album lookup got error %@", error);
+                                                return;
+                                            }
+                                            if ([object isKindOfClass:[SPTAlbum class]]) {
+                                                SPTAlbum *album = (SPTAlbum *)object;
+                                                
+                                                [self.trackPlayer playTrackProvider:album fromIndex:offset];
+                                            }
+                                            
+                                        }];
+    }];
 }
 
 -(void)closeView
