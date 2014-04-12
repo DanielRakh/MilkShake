@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		613F22ED18F9A39E00492EF4 /* Spotify.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 613F22EC18F9A39E00492EF4 /* Spotify.framework */; };
+		613F22EF18F9A3DA00492EF4 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 613F22EE18F9A3DA00492EF4 /* AVFoundation.framework */; };
 		8EC503C918F99FA200A96867 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8EC503C818F99FA200A96867 /* Foundation.framework */; };
 		8EC503CB18F99FA200A96867 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8EC503CA18F99FA200A96867 /* CoreGraphics.framework */; };
 		8EC503CD18F99FA200A96867 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8EC503CC18F99FA200A96867 /* UIKit.framework */; };
@@ -34,6 +36,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		613F22EC18F9A39E00492EF4 /* Spotify.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Spotify.framework; sourceTree = "<group>"; };
+		613F22EE18F9A3DA00492EF4 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
 		8EC503C518F99FA200A96867 /* MilkShake.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MilkShake.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8EC503C818F99FA200A96867 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		8EC503CA18F99FA200A96867 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -60,9 +64,11 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				613F22EF18F9A3DA00492EF4 /* AVFoundation.framework in Frameworks */,
 				8EC503CB18F99FA200A96867 /* CoreGraphics.framework in Frameworks */,
 				8EC503CD18F99FA200A96867 /* UIKit.framework in Frameworks */,
 				8EC503C918F99FA200A96867 /* Foundation.framework in Frameworks */,
+				613F22ED18F9A39E00492EF4 /* Spotify.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -101,6 +107,8 @@
 		8EC503C718F99FA200A96867 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				613F22EE18F9A3DA00492EF4 /* AVFoundation.framework */,
+				613F22EC18F9A39E00492EF4 /* Spotify.framework */,
 				8EC503C818F99FA200A96867 /* Foundation.framework */,
 				8EC503CA18F99FA200A96867 /* CoreGraphics.framework */,
 				8EC503CC18F99FA200A96867 /* UIKit.framework */,
@@ -376,9 +384,14 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "MilkShake/MilkShake-Prefix.pch";
 				INFOPLIST_FILE = "MilkShake/MilkShake-Info.plist";
+				OTHER_LDFLAGS = "-objC";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
 			};
@@ -389,9 +402,14 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "MilkShake/MilkShake-Prefix.pch";
 				INFOPLIST_FILE = "MilkShake/MilkShake-Info.plist";
+				OTHER_LDFLAGS = "-objC";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
 			};
@@ -456,6 +474,7 @@
 				8EC503F918F99FA300A96867 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		8EC503FA18F99FA300A96867 /* Build configuration list for PBXNativeTarget "MilkShakeTests" */ = {
 			isa = XCConfigurationList;
@@ -464,6 +483,7 @@
 				8EC503FC18F99FA300A96867 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
