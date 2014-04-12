@@ -8,9 +8,10 @@
 
 #import "MSSpotifySearchResultsCollectionController.h"
 #import "MSSongCollectionViewCell.h"
+#import "MSCollectionHeaderView.h"
 
 @interface MSSpotifySearchResultsCollectionController ()
-
+@property (nonatomic, strong) MSCollectionHeaderView *headerView;
 @end
 
 @implementation MSSpotifySearchResultsCollectionController
@@ -52,9 +53,23 @@
 {
     UICollectionReusableView *reusableview = nil;
     if (kind == UICollectionElementKindSectionHeader) {
-        UICollectionReusableView *headerView = [collectionView dequeueReusableSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:@"HeaderView" forIndexPath:indexPath];
+        MSCollectionHeaderView *headerView = [collectionView dequeueReusableSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:@"HeaderView" forIndexPath:indexPath];
         reusableview = headerView;
+        [headerView.searchBar setDelegate:self];
+        [self setHeaderView:headerView];
     }
     return reusableview;
 }
+
+#pragma mark - UISearchBar delegate
+- (void)searchBar:(UISearchBar *)searchBar textDidChange:(NSString *)searchText
+{
+    
+}
+
+- (void)searchBarSearchButtonClicked:(UISearchBar *)searchBar
+{
+    [self.headerView.searchBar resignFirstResponder];
+}
+
 @end

@@ -8,6 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface MSSpotifySearchResultsCollectionController : UICollectionViewController
+@interface MSSpotifySearchResultsCollectionController : UICollectionViewController<UISearchBarDelegate>
 
 @end
