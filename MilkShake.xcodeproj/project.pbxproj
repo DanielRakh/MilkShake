@@ -13,6 +13,7 @@
 		6178395A18F9BBDB00FD65CF /* SpotifyStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6178395918F9BBDB00FD65CF /* SpotifyStoryboard.storyboard */; };
 		6178396018F9BD9A00FD65CF /* MSSpotifySearchResultsCollectionController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6178395F18F9BD9A00FD65CF /* MSSpotifySearchResultsCollectionController.m */; };
 		6178396318F9C5FA00FD65CF /* MSSongCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 6178396218F9C5FA00FD65CF /* MSSongCollectionViewCell.m */; };
+		6178396618F9C6B000FD65CF /* MSCollectionHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 6178396518F9C6B000FD65CF /* MSCollectionHeaderView.m */; };
 		8EC503C918F99FA200A96867 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8EC503C818F99FA200A96867 /* Foundation.framework */; };
 		8EC503CB18F99FA200A96867 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8EC503CA18F99FA200A96867 /* CoreGraphics.framework */; };
 		8EC503CD18F99FA200A96867 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8EC503CC18F99FA200A96867 /* UIKit.framework */; };
@@ -49,6 +50,8 @@
 		6178395F18F9BD9A00FD65CF /* MSSpotifySearchResultsCollectionController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MSSpotifySearchResultsCollectionController.m; sourceTree = "<group>"; };
 		6178396118F9C5FA00FD65CF /* MSSongCollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MSSongCollectionViewCell.h; sourceTree = "<group>"; };
 		6178396218F9C5FA00FD65CF /* MSSongCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MSSongCollectionViewCell.m; sourceTree = "<group>"; };
+		6178396418F9C6B000FD65CF /* MSCollectionHeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MSCollectionHeaderView.h; sourceTree = "<group>"; };
+		6178396518F9C6B000FD65CF /* MSCollectionHeaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MSCollectionHeaderView.m; sourceTree = "<group>"; };
 		8EC503C518F99FA200A96867 /* MilkShake.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MilkShake.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8EC503C818F99FA200A96867 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		8EC503CA18F99FA200A96867 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -106,6 +109,8 @@
 				6178395F18F9BD9A00FD65CF /* MSSpotifySearchResultsCollectionController.m */,
 				6178396118F9C5FA00FD65CF /* MSSongCollectionViewCell.h */,
 				6178396218F9C5FA00FD65CF /* MSSongCollectionViewCell.m */,
+				6178396418F9C6B000FD65CF /* MSCollectionHeaderView.h */,
+				6178396518F9C6B000FD65CF /* MSCollectionHeaderView.m */,
 			);
 			name = Spotify;
 			sourceTree = "<group>";
@@ -288,6 +293,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				8EC503DF18F99FA200A96867 /* ViewController.m in Sources */,
+				6178396618F9C6B000FD65CF /* MSCollectionHeaderView.m in Sources */,
 				6178396018F9BD9A00FD65CF /* MSSpotifySearchResultsCollectionController.m in Sources */,
 				613F22F518F9A6AD00492EF4 /* MSSpotifyViewController.m in Sources */,
 				8EC503D918F99FA200A96867 /* AppDelegate.m in Sources */,
