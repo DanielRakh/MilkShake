@@ -49,7 +49,7 @@ static NSString * const kTokenSwapURL = @"http://localhost:1234/swap";
     // Do any additional setup after loading the view.
     [self.view setBackgroundColor:[UIColor redColor]];
     
-    UIButton *closeButton = [[UIButton alloc] initWithFrame:CGRectMake(100, 100, 100, 15)];
+    UIButton *closeButton = [[UIButton alloc] initWithFrame:CGRectMake(0, 30, 100, 15)];
     [closeButton setTitle:@"Close" forState:UIControlStateNormal];
     [self.view addSubview:closeButton];
     [closeButton addTarget:self action:@selector(closeView)forControlEvents:UIControlEventTouchUpInside];
