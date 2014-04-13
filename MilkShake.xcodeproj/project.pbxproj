@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		613F22EF18F9A3DA00492EF4 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 613F22EE18F9A3DA00492EF4 /* AVFoundation.framework */; };
 		613F22F518F9A6AD00492EF4 /* MSSpotifyViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 613F22F418F9A6AD00492EF4 /* MSSpotifyViewController.m */; };
+		616BBECA18FB06FD0089B842 /* MSLoadingView.m in Sources */ = {isa = PBXBuildFile; fileRef = 616BBEC918FB06FD0089B842 /* MSLoadingView.m */; };
 		6178395A18F9BBDB00FD65CF /* SpotifyStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6178395918F9BBDB00FD65CF /* SpotifyStoryboard.storyboard */; };
 		6178396018F9BD9A00FD65CF /* MSSpotifySearchResultsCollectionController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6178395F18F9BD9A00FD65CF /* MSSpotifySearchResultsCollectionController.m */; };
 		6178396318F9C5FA00FD65CF /* MSSongCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 6178396218F9C5FA00FD65CF /* MSSongCollectionViewCell.m */; };
@@ -43,6 +44,8 @@
 		613F22EE18F9A3DA00492EF4 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
 		613F22F318F9A6AD00492EF4 /* MSSpotifyViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MSSpotifyViewController.h; sourceTree = "<group>"; };
 		613F22F418F9A6AD00492EF4 /* MSSpotifyViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MSSpotifyViewController.m; sourceTree = "<group>"; };
+		616BBEC818FB06FD0089B842 /* MSLoadingView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MSLoadingView.h; sourceTree = "<group>"; };
+		616BBEC918FB06FD0089B842 /* MSLoadingView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MSLoadingView.m; sourceTree = "<group>"; };
 		6178395918F9BBDB00FD65CF /* SpotifyStoryboard.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = SpotifyStoryboard.storyboard; sourceTree = "<group>"; };
 		6178395E18F9BD9A00FD65CF /* MSSpotifySearchResultsCollectionController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MSSpotifySearchResultsCollectionController.h; sourceTree = "<group>"; };
 		6178395F18F9BD9A00FD65CF /* MSSpotifySearchResultsCollectionController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MSSpotifySearchResultsCollectionController.m; sourceTree = "<group>"; };
@@ -106,6 +109,8 @@
 				6178395F18F9BD9A00FD65CF /* MSSpotifySearchResultsCollectionController.m */,
 				6178396118F9C5FA00FD65CF /* MSSongCollectionViewCell.h */,
 				6178396218F9C5FA00FD65CF /* MSSongCollectionViewCell.m */,
+				616BBEC818FB06FD0089B842 /* MSLoadingView.h */,
+				616BBEC918FB06FD0089B842 /* MSLoadingView.m */,
 			);
 			name = Spotify;
 			sourceTree = "<group>";
@@ -288,6 +293,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				8EC503DF18F99FA200A96867 /* ViewController.m in Sources */,
+				616BBECA18FB06FD0089B842 /* MSLoadingView.m in Sources */,
 				6178396018F9BD9A00FD65CF /* MSSpotifySearchResultsCollectionController.m in Sources */,
 				613F22F518F9A6AD00492EF4 /* MSSpotifyViewController.m in Sources */,
 				8EC503D918F99FA200A96867 /* AppDelegate.m in Sources */,

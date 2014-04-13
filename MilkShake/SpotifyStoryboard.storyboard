@@ -62,6 +62,11 @@
                                     <outlet property="delegate" destination="wZx-vv-uWD" id="73i-xZ-4zb"/>
                                 </connections>
                             </searchBar>
+                            <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="37x-02-lXa" customClass="MSLoadingView">
+                                <rect key="frame" x="0.0" y="108" width="320" height="411"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                            </view>
                             <collectionView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" minimumZoomScale="0.0" maximumZoomScale="0.0" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="WZ7-HN-rfU">
                                 <rect key="frame" x="0.0" y="108" width="320" height="411"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -109,10 +114,14 @@
                         <constraints>
                             <constraint firstAttribute="trailing" secondItem="MsJ-As-hxt" secondAttribute="trailing" id="3vS-Bd-x7K"/>
                             <constraint firstItem="MsJ-As-hxt" firstAttribute="top" secondItem="ceb-6m-xrh" secondAttribute="bottom" id="5rN-mj-voN"/>
+                            <constraint firstAttribute="trailing" secondItem="37x-02-lXa" secondAttribute="trailing" id="ASL-D3-wq8"/>
                             <constraint firstItem="WZ7-HN-rfU" firstAttribute="leading" secondItem="u7z-Ef-ytl" secondAttribute="leading" id="OT8-Df-y80"/>
                             <constraint firstItem="hU5-LL-tSm" firstAttribute="top" secondItem="WZ7-HN-rfU" secondAttribute="bottom" id="PX6-XY-rzA"/>
+                            <constraint firstItem="37x-02-lXa" firstAttribute="leading" secondItem="u7z-Ef-ytl" secondAttribute="leading" id="Zyt-to-Mfr"/>
                             <constraint firstItem="WZ7-HN-rfU" firstAttribute="top" secondItem="MsJ-As-hxt" secondAttribute="bottom" id="btr-3p-OHL"/>
                             <constraint firstAttribute="trailing" secondItem="WZ7-HN-rfU" secondAttribute="trailing" id="lx1-7l-FsQ"/>
+                            <constraint firstItem="hU5-LL-tSm" firstAttribute="top" secondItem="37x-02-lXa" secondAttribute="bottom" id="qH8-XH-DM4"/>
+                            <constraint firstItem="37x-02-lXa" firstAttribute="top" secondItem="MsJ-As-hxt" secondAttribute="bottom" id="qSC-3w-dwX"/>
                             <constraint firstItem="MsJ-As-hxt" firstAttribute="leading" secondItem="u7z-Ef-ytl" secondAttribute="leading" id="z51-BM-P8g"/>
                         </constraints>
                     </view>
