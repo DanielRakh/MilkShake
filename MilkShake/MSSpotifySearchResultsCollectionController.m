@@ -13,6 +13,7 @@
 
 @interface MSSpotifySearchResultsCollectionController () <UICollectionViewDataSource, UICollectionViewDelegate>
 @property (nonatomic, strong) NSArray *searchResults;
+@property (nonatomic, strong) NSMutableArray *albumSearchResults;
 @property (weak, nonatomic) IBOutlet UICollectionView *collectionView;
 
 @end
@@ -24,7 +25,6 @@
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
         // Custom initialization
-        self.searchResults = [NSArray array];
     }
     return self;
 }
@@ -33,6 +33,8 @@
 {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+    self.searchResults = [NSArray array];
+    self.albumSearchResults = [[NSMutableArray alloc] init];
 }
 
 #pragma mark - UICollectionViewDataSource Protocol
@@ -58,6 +60,9 @@
     NSString *cellTitle = [artist stringByAppendingString:@" - "];
     cellTitle = [cellTitle stringByAppendingString:title];
     [cell.songTitle setText:cellTitle];
+    if (self.albumSearchResults.count > 0 && indexPath.row <= self.albumSearchResults.count - 1) {
+        [cell.image setImage:self.albumSearchResults[indexPath.row]];
+    }
     return cell;
 }
 
@@ -91,10 +96,35 @@
                                   }
                                   if ([object isKindOfClass:[NSArray class]]) {
                                       [self setSearchResults:object];
+                                      for (SPTTrack *track in self.searchResults) {
+                                          [self loadAlbumArtForTrack:track];
+                                      }
                                       [self.collectionView reloadData];
                                       NSLog(@"%@",object);
                                   }
                               }];
+}
+
+- (void)loadAlbumArtForTrack:(SPTTrack *)track
+{
+    SPTPartialAlbum *partialAlbum = track.album;
+    [SPTRequest requestItemFromPartialObject:partialAlbum
+                                 withSession:nil
+                                    callback:^(NSError *error, id object) {
+                                        if (error != nil) {
+                                            NSLog(@"*** Album lookup got error %@", error);
+                                            return;
+                                        }
+                                        if ([object isKindOfClass:[SPTAlbum class]]) {
+                                            SPTAlbum *album = object;
+                                            NSArray *covers = album.covers;
+                                            SPTImage *coverImage = covers[SPTImageSizeMedium];
+                                            NSURL *coverURL = coverImage.imageURL;
+                                            NSData *imageData = [[NSData alloc] initWithContentsOfURL:coverURL];
+                                            [self.albumSearchResults addObject:[UIImage imageWithData:imageData]];
+                                            [self.collectionView reloadData];
+                                        }
+                                    }];
 }
 
 @end
