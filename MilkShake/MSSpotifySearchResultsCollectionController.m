@@ -89,6 +89,7 @@
 {
     [self.searchBar resignFirstResponder];
     [self.availableResults removeAllObjects]; // new search, new results
+    [self.trackAndCoverDictionary removeAllObjects];
     
     NSString *searchString = searchBar.text;
     [SPTRequest performSearchWithQuery:searchString queryType:SPTQueryTypeTrack session:nil
@@ -104,6 +105,7 @@
                               }];
 }
 
+#pragma mark - Helper methods
 - (void)loadAlbumArtForTrack:(SPTTrack *)track
 {
     SPTPartialAlbum *partialAlbum = track.album;
@@ -122,7 +124,7 @@
                                             NSData *imageData = [[NSData alloc] initWithContentsOfURL:coverURL];
                                             NSString *key = [NSString stringWithFormat:@"%@",track.uri];
                                             [self.trackAndCoverDictionary setValue:[UIImage imageWithData:imageData] forKey:key];
-                                            [self.collectionView reloadData];
+                                            [self reloadCollectionView];
                                         }
                                     }];
 }
@@ -140,6 +142,13 @@
     
 }
 
+- (void)reloadCollectionView
+{
+    if (self.availableResults.count == self.trackAndCoverDictionary.count) {
+        [self.collectionView reloadData];
+    }
+}
+#pragma mark - IBActions
 - (IBAction)testP2P:(id)sender {
     
 }
