@@ -99,9 +99,9 @@
 		613F22F618F9A6C000492EF4 /* Spotify */ = {
 			isa = PBXGroup;
 			children = (
+				6178395918F9BBDB00FD65CF /* SpotifyStoryboard.storyboard */,
 				613F22F318F9A6AD00492EF4 /* MSSpotifyViewController.h */,
 				613F22F418F9A6AD00492EF4 /* MSSpotifyViewController.m */,
-				6178395918F9BBDB00FD65CF /* SpotifyStoryboard.storyboard */,
 				6178395E18F9BD9A00FD65CF /* MSSpotifySearchResultsCollectionController.h */,
 				6178395F18F9BD9A00FD65CF /* MSSpotifySearchResultsCollectionController.m */,
 				6178396118F9C5FA00FD65CF /* MSSongCollectionViewCell.h */,

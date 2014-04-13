@@ -11,6 +11,7 @@
 @interface MSSpotifySearchResultsCollectionController : UIViewController <UISearchBarDelegate>
 
 @property (weak, nonatomic) IBOutlet UISearchBar *searchBar;
+- (IBAction)testP2P:(id)sender;
 
 
 @end
