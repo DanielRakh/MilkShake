@@ -15,12 +15,13 @@ static NSString * const kClientId = @"spotify-ios-sdk-beta";
 static NSString * const kCallbackURL = @"spotify-ios-sdk-beta://callback";
 static NSString * const kTokenSwapURL = @"http://localhost:1234/swap";
 
-@interface MSSpotifyViewController ()
+@interface MSSpotifyViewController ()<SPTTrackPlayerDelegate>
 @property (nonatomic, strong) SPTSession *session;
 @end
 
 @implementation MSSpotifyViewController
 
+#pragma mark - Lifecycle Events
 +(MSSpotifyViewController *)sharedController
 {
     static MSSpotifyViewController *shared;
@@ -66,6 +67,7 @@ static NSString * const kTokenSwapURL = @"http://localhost:1234/swap";
 
 }
 
+#pragma mark - Helper Methods
 - (BOOL)localAuthCallback:(NSURL *)url
 {
     MSSpotifySearchResultsCollectionController *searchController = [UIStoryboard storyboardWithName:@"SpotifyStoryboard" bundle:[NSBundle mainBundle]].instantiateInitialViewController;
@@ -159,9 +161,36 @@ static NSString * const kTokenSwapURL = @"http://localhost:1234/swap";
     }];
 }
 
+#pragma mark - SPTTrackPlayerDelegate Protocol methods
+- (void)trackPlayer:(SPTTrackPlayer *)player didStartPlaybackOfTrackAtIndex:(NSInteger)index ofProvider:(id<SPTTrackProvider>)provider
+{
+    
+}
+
+- (void)trackPlayer:(SPTTrackPlayer *)player didEndPlaybackOfTrackAtIndex:(NSInteger)index ofProvider:(id<SPTTrackProvider>)provider
+{
+    
+}
+
+- (void)trackPlayer:(SPTTrackPlayer *)player didEndPlaybackOfProvider:(id<SPTTrackProvider>)provider withReason:(SPTPlaybackEndReason)reason
+{
+    
+}
+
+- (void)trackPlayer:(SPTTrackPlayer *)player didEndPlaybackOfProvider:(id<SPTTrackProvider>)provider withError:(NSError *)error
+{
+    
+}
+
+- (void)trackPlayer:(SPTTrackPlayer *)player didDidReceiveMessageForEndUser:(NSString *)message
+{
+    
+}
+#pragma mark - IBActions
 -(void)closeView
 {
     [self.presentingViewController dismissViewControllerAnimated:YES
                                                       completion:^{}];
 }
+
 @end
