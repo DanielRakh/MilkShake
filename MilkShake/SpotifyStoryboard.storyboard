@@ -134,6 +134,7 @@
                     </navigationItem>
                     <connections>
                         <outlet property="collectionView" destination="WZ7-HN-rfU" id="1Hm-jr-qK8"/>
+                        <outlet property="loadingView" destination="37x-02-lXa" id="Kkk-yI-3pI"/>
                         <outlet property="searchBar" destination="MsJ-As-hxt" id="fqG-ke-zEw"/>
                     </connections>
                 </viewController>

@@ -10,6 +10,7 @@
 #import "MSSongCollectionViewCell.h"
 #import "MSSpotifyViewController.h"
 #import <Spotify/Spotify.h>
+#import "MSLoadingView.h"
 
 @interface MSSpotifySearchResultsCollectionController () <UICollectionViewDataSource, UICollectionViewDelegate>
 @property (nonatomic, strong) NSArray *searchResults;
@@ -87,9 +88,14 @@
 
 - (void)searchBarSearchButtonClicked:(UISearchBar *)searchBar
 {
+    // Clear out old data
     [self.searchBar resignFirstResponder];
     [self.availableResults removeAllObjects]; // new search, new results
     [self.trackAndCoverDictionary removeAllObjects];
+    
+    // Show loading view
+    [self.loadingView setHidden:NO];
+    [self.view bringSubviewToFront:self.loadingView];
     
     NSString *searchString = searchBar.text;
     [SPTRequest performSearchWithQuery:searchString queryType:SPTQueryTypeTrack session:nil
@@ -146,6 +152,8 @@
 {
     if (self.availableResults.count == self.trackAndCoverDictionary.count) {
         [self.collectionView reloadData];
+        [self.loadingView setHidden:YES];
+        [self.view sendSubviewToBack:self.loadingView];
     }
 }
 #pragma mark - IBActions

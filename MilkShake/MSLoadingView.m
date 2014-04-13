@@ -15,10 +15,24 @@
     self = [super initWithFrame:frame];
     if (self) {
         // Initialization code
+        [self commonInit];
     }
     return self;
 }
 
+- (id)initWithCoder:(NSCoder *)aDecoder
+{
+    self = [super initWithCoder:aDecoder];
+    if (self) {
+        [self commonInit];
+    }
+    return self;
+}
+
+- (void)commonInit
+{
+    [self setBackgroundColor:[UIColor blueColor]];
+}
 /*
 // Only override drawRect: if you perform custom drawing.
 // An empty implementation adversely affects performance during animation.
