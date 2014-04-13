@@ -131,10 +131,11 @@
 {
     for (SPTTrack *track in self.searchResults) {
         // For now, only make US songs available
-        if ([track.availableTerritories containsObject:@"US"]) {
+        
+        //if ([track.availableTerritories containsObject:@"US"]) {
             [self.availableResults addObject:track];
             [self loadAlbumArtForTrack:track];
-        }
+       // }
     }
     
 }
