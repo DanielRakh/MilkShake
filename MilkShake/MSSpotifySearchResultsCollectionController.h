@@ -8,6 +8,9 @@
 
 #import <UIKit/UIKit.h>
 
-@interface MSSpotifySearchResultsCollectionController : UICollectionViewController<UISearchBarDelegate>
+@interface MSSpotifySearchResultsCollectionController : UIViewController <UISearchBarDelegate>
+
+@property (weak, nonatomic) IBOutlet UISearchBar *searchBar;
+
 
 @end

@@ -8,13 +8,13 @@
 
 #import "MSSpotifySearchResultsCollectionController.h"
 #import "MSSongCollectionViewCell.h"
-#import "MSCollectionHeaderView.h"
 #import "MSSpotifyViewController.h"
 #import <Spotify/Spotify.h>
 
-@interface MSSpotifySearchResultsCollectionController ()
-@property (nonatomic, strong) MSCollectionHeaderView *headerView;
+@interface MSSpotifySearchResultsCollectionController () <UICollectionViewDataSource, UICollectionViewDelegate>
 @property (nonatomic, strong) NSArray *searchResults;
+@property (weak, nonatomic) IBOutlet UICollectionView *collectionView;
+
 @end
 
 @implementation MSSpotifySearchResultsCollectionController
@@ -61,17 +61,6 @@
     return cell;
 }
 
-- (UICollectionReusableView *)collectionView:(UICollectionView *)collectionView viewForSupplementaryElementOfKind:(NSString *)kind atIndexPath:(NSIndexPath *)indexPath
-{
-    UICollectionReusableView *reusableview = nil;
-    if (kind == UICollectionElementKindSectionHeader) {
-        MSCollectionHeaderView *headerView = [collectionView dequeueReusableSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:@"HeaderView" forIndexPath:indexPath];
-        reusableview = headerView;
-        [headerView.searchBar setDelegate:self];
-        [self setHeaderView:headerView];
-    }
-    return reusableview;
-}
 
 #pragma mark - UICollectionViewDelegate Protocol
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
@@ -91,7 +80,7 @@
 
 - (void)searchBarSearchButtonClicked:(UISearchBar *)searchBar
 {
-    [self.headerView.searchBar resignFirstResponder];
+    [self.searchBar resignFirstResponder];
     
     NSString *searchString = searchBar.text;
     [SPTRequest performSearchWithQuery:searchString queryType:SPTQueryTypeTrack session:nil
