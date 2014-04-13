@@ -16,7 +16,9 @@ static NSString * const kCallbackURL = @"spotify-ios-sdk-beta://callback";
 static NSString * const kTokenSwapURL = @"http://localhost:1234/swap";
 
 @interface MSSpotifyViewController ()<SPTTrackPlayerDelegate>
+@property (nonatomic, strong) SPTTrackPlayer *trackPlayer;
 @property (nonatomic, strong) SPTSession *session;
+@property (nonatomic, assign) NSInteger trackIndexOfSelectedSong;
 @end
 
 @implementation MSSpotifyViewController
@@ -134,6 +136,7 @@ static NSString * const kTokenSwapURL = @"http://localhost:1234/swap";
     if (self.trackPlayer == nil) {
         self.trackPlayer = [[SPTTrackPlayer alloc] initWithCompanyName:@"Your-Company-Name"
                                                                appName:@"MilkShake"];
+        [self.trackPlayer setDelegate:self];
     }
     
     [self.trackPlayer enablePlaybackWithSession:self.session callback:^(NSError *error) {
@@ -153,7 +156,7 @@ static NSString * const kTokenSwapURL = @"http://localhost:1234/swap";
                                             }
                                             if ([object isKindOfClass:[SPTAlbum class]]) {
                                                 SPTAlbum *album = (SPTAlbum *)object;
-                                                
+                                                self.trackIndexOfSelectedSong = offset;
                                                 [self.trackPlayer playTrackProvider:album fromIndex:offset];
                                             }
                                             
@@ -164,7 +167,9 @@ static NSString * const kTokenSwapURL = @"http://localhost:1234/swap";
 #pragma mark - SPTTrackPlayerDelegate Protocol methods
 - (void)trackPlayer:(SPTTrackPlayer *)player didStartPlaybackOfTrackAtIndex:(NSInteger)index ofProvider:(id<SPTTrackProvider>)provider
 {
-    
+    if (index != self.trackIndexOfSelectedSong) {
+        [player pausePlayback];
+    }
 }
 
 - (void)trackPlayer:(SPTTrackPlayer *)player didEndPlaybackOfTrackAtIndex:(NSInteger)index ofProvider:(id<SPTTrackProvider>)provider
