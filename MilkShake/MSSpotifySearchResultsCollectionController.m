@@ -13,7 +13,7 @@
 
 @interface MSSpotifySearchResultsCollectionController () <UICollectionViewDataSource, UICollectionViewDelegate>
 @property (nonatomic, strong) NSArray *searchResults;
-@property (nonatomic, strong) NSMutableArray *albumSearchResults;
+@property (nonatomic, strong) NSMutableDictionary *trackAndCoverDictionary;
 @property (weak, nonatomic) IBOutlet UICollectionView *collectionView;
 
 @end
@@ -34,7 +34,7 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     self.searchResults = [NSArray array];
-    self.albumSearchResults = [[NSMutableArray alloc] init];
+    self.trackAndCoverDictionary = [NSMutableDictionary dictionary];
 }
 
 #pragma mark - UICollectionViewDataSource Protocol
@@ -60,9 +60,9 @@
     NSString *cellTitle = [artist stringByAppendingString:@" - "];
     cellTitle = [cellTitle stringByAppendingString:title];
     [cell.songTitle setText:cellTitle];
-    if (self.albumSearchResults.count > 0 && indexPath.row <= self.albumSearchResults.count - 1) {
-        [cell.image setImage:self.albumSearchResults[indexPath.row]];
-    }
+    NSString *key = [NSString stringWithFormat:@"%@",track.uri];
+    UIImage *albumImage = self.trackAndCoverDictionary[key];
+    [cell.image setImage:albumImage];
     return cell;
 }
 
@@ -121,7 +121,9 @@
                                             SPTImage *coverImage = covers[SPTImageSizeMedium];
                                             NSURL *coverURL = coverImage.imageURL;
                                             NSData *imageData = [[NSData alloc] initWithContentsOfURL:coverURL];
-                                            [self.albumSearchResults addObject:[UIImage imageWithData:imageData]];
+                                            NSString *key = [NSString stringWithFormat:@"%@",track.uri];
+                                            [self.trackAndCoverDictionary setValue:[UIImage imageWithData:imageData] forKey:key];
+
                                             [self.collectionView reloadData];
                                         }
                                     }];
