@@ -99,6 +99,7 @@ static NSString * const kTokenSwapURL = @"http://localhost:1234/swap";
     return NO;
 }
 
+// Demo method - unused
 -(void)playUsingSession:(SPTSession *)session
 {
     // Create a new track player if needed
