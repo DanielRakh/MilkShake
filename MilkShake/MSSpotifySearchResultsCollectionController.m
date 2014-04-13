@@ -54,15 +54,11 @@
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath
 {
     MSSongCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"Cell" forIndexPath:indexPath];
-    [cell setBackgroundColor:[UIColor blueColor]];
+    [cell setBackgroundColor:[UIColor blackColor]];
     SPTTrack *track = (SPTTrack *)self.availableResults[indexPath.row];
-    SPTPartialArtist *partialArtist = track.artists[0];
-
-    NSString *title = track.name;
-    NSString *artist = partialArtist.name;
-    NSString *cellTitle = [artist stringByAppendingString:@" - "];
-    cellTitle = [cellTitle stringByAppendingString:title];
-    [cell.songTitle setText:cellTitle];
+    SPTPartialArtist *partialArtist = track.artists[0];    
+    [cell.artist setText:partialArtist.name];
+    [cell.songTitle setText:track.name];
     NSString *key = [NSString stringWithFormat:@"%@",track.uri];
     UIImage *albumImage = self.trackAndCoverDictionary[key];
     [cell.image setImage:albumImage];
