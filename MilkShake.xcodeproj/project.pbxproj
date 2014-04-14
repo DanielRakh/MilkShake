@@ -30,6 +30,7 @@
 		8EC503EA18F99FA200A96867 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8EC503CC18F99FA200A96867 /* UIKit.framework */; };
 		8EC503F218F99FA200A96867 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 8EC503F018F99FA200A96867 /* InfoPlist.strings */; };
 		8EC503F418F99FA200A96867 /* MilkShakeTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 8EC503F318F99FA200A96867 /* MilkShakeTests.m */; };
+		8EC5044A18FBBA5200A96867 /* MCManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 8EC5044918FBBA5200A96867 /* MCManager.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -76,6 +77,8 @@
 		8EC503EF18F99FA200A96867 /* MilkShakeTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "MilkShakeTests-Info.plist"; sourceTree = "<group>"; };
 		8EC503F118F99FA200A96867 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		8EC503F318F99FA200A96867 /* MilkShakeTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MilkShakeTests.m; sourceTree = "<group>"; };
+		8EC5044818FBBA5200A96867 /* MCManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MCManager.h; sourceTree = "<group>"; };
+		8EC5044918FBBA5200A96867 /* MCManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MCManager.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -164,6 +167,7 @@
 				8EC503DA18F99FA200A96867 /* Main.storyboard */,
 				8EC503DD18F99FA200A96867 /* ViewController.h */,
 				8EC503DE18F99FA200A96867 /* ViewController.m */,
+				8EC5044718FBBA1700A96867 /* Multipeer Connectivity */,
 				613F22F618F9A6C000492EF4 /* Spotify */,
 				8EC503CF18F99FA200A96867 /* Supporting Files */,
 			);
@@ -197,6 +201,15 @@
 				8EC503F018F99FA200A96867 /* InfoPlist.strings */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		8EC5044718FBBA1700A96867 /* Multipeer Connectivity */ = {
+			isa = PBXGroup;
+			children = (
+				8EC5044818FBBA5200A96867 /* MCManager.h */,
+				8EC5044918FBBA5200A96867 /* MCManager.m */,
+			);
+			name = "Multipeer Connectivity";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -305,6 +318,7 @@
 				616BBECA18FB06FD0089B842 /* MSLoadingView.m in Sources */,
 				6178396018F9BD9A00FD65CF /* MSSpotifySearchResultsCollectionController.m in Sources */,
 				613F22F518F9A6AD00492EF4 /* MSSpotifyViewController.m in Sources */,
+				8EC5044A18FBBA5200A96867 /* MCManager.m in Sources */,
 				8EC503D918F99FA200A96867 /* AppDelegate.m in Sources */,
 				8EC503D518F99FA200A96867 /* main.m in Sources */,
 				6178396318F9C5FA00FD65CF /* MSSongCollectionViewCell.m in Sources */,
