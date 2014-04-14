@@ -8,6 +8,16 @@
 
 #import "MCManager.h"
 
+NSString *const kServiceType = @"ms-songshare";
+
+typedef void(^InvitationHandler)(BOOL accept, MCSession *session);
+
+@interface MCManager ()<MCNearbyServiceAdvertiserDelegate, MCNearbyServiceBrowserDelegate, UIAlertViewDelegate>
+
+@property (copy, nonatomic) InvitationHandler handler;
+
+@end
+
 @implementation MCManager
 
 - (id)init {
@@ -32,8 +42,21 @@
 }
 - (void)setupMCBrowser {
     
+//    self.nearbyServiceBrowser = [[MCNearbyServiceBrowser alloc]
+//                                 initWithPeer:self.peerID
+//                                 serviceType:k]
+    
 }
 - (void)advertiseSelf:(BOOL)shouldAdvertise {
+    
+    if (shouldAdvertise) {
+        self.nearbyServiceAdvertiser = [[MCNearbyServiceAdvertiser alloc]
+                                        initWithPeer:self.peerID
+                                        discoveryInfo:nil
+                                        serviceType:kServiceType];
+        self.nearbyServiceAdvertiser.delegate = self;
+        [self.nearbyServiceAdvertiser startAdvertisingPeer];
+    }
     
 }
 
@@ -62,6 +85,42 @@
 // Finished receiving a resource from remote peer and saved the content in a temporary location - the app is responsible for moving the file to a permanent location within its sandbox
 - (void)session:(MCSession *)session didFinishReceivingResourceWithName:(NSString *)resourceName fromPeer:(MCPeerID *)peerID atURL:(NSURL *)localURL withError:(NSError *)error {
     
+}
+
+#pragma mark - MCNearbyServiceAdvertiserDelegate
+
+// Incoming invitation request.  Call the invitationHandler block with YES and a valid session to connect the inviting peer to the session.
+- (void)advertiser:(MCNearbyServiceAdvertiser *)advertiser didReceiveInvitationFromPeer:(MCPeerID *)peerID withContext:(NSData *)context invitationHandler:(void(^)(BOOL accept, MCSession *session))invitationHandler {
+    
+    self.handler = invitationHandler;
+    
+    [[[UIAlertView alloc] initWithTitle:@"Hey! Let's Connect"
+                                message:[NSString
+                                         stringWithFormat:@"%@ wants to connect",
+                                         peerID.displayName] delegate:self
+                      cancelButtonTitle:@"Nope"
+                      otherButtonTitles:@"Sure", nil] show];
+    
+}
+
+#pragma mark - MCNearbyServiceBrowserDelegate
+
+// Found a nearby advertising peer
+- (void)browser:(MCNearbyServiceBrowser *)browser foundPeer:(MCPeerID *)peerID withDiscoveryInfo:(NSDictionary *)info {
+    
+}
+
+// A nearby peer has stopped advertising
+- (void)browser:(MCNearbyServiceBrowser *)browser lostPeer:(MCPeerID *)peerID {
+    
+}
+
+#pragma mark - UIAlertView Delegate
+
+- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex {
+    
+    BOOL accept = (buttonIndex == alertView.cancelButtonIndex) ? NO : YES;
+    self.handler(accept, self.session);
 }
 
 @end
