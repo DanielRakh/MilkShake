@@ -11,12 +11,16 @@
 #import "MSSpotifyViewController.h"
 #import <Spotify/Spotify.h>
 #import "MSLoadingView.h"
+#import "AppDelegate.h"
+#import "MCManager.h"
+@import MultipeerConnectivity;
 
 @interface MSSpotifySearchResultsCollectionController () <UICollectionViewDataSource, UICollectionViewDelegate>
 @property (nonatomic, strong) NSArray *searchResults;
 @property (nonatomic, strong) NSMutableArray *availableResults;
 @property (nonatomic, strong) NSMutableDictionary *trackAndCoverDictionary;
 @property (weak, nonatomic) IBOutlet UICollectionView *collectionView;
+@property (nonatomic, strong) AppDelegate *appDelegate;
 
 @end
 
@@ -154,6 +158,10 @@
 }
 #pragma mark - IBActions
 - (IBAction)testP2P:(id)sender {
+    
+    [self.appDelegate.mcManager setupPeerAndSessionWithDisplayName:[UIDevice currentDevice].name];
+    [self.appDelegate.mcManager advertiseSelf:YES];
+
     
 }
 @end

@@ -31,6 +31,7 @@
 		8EC503F218F99FA200A96867 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 8EC503F018F99FA200A96867 /* InfoPlist.strings */; };
 		8EC503F418F99FA200A96867 /* MilkShakeTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 8EC503F318F99FA200A96867 /* MilkShakeTests.m */; };
 		8EC5044A18FBBA5200A96867 /* MCManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 8EC5044918FBBA5200A96867 /* MCManager.m */; };
+		8EC5044D18FBC80400A96867 /* SecondViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8EC5044C18FBC80400A96867 /* SecondViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -79,6 +80,8 @@
 		8EC503F318F99FA200A96867 /* MilkShakeTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MilkShakeTests.m; sourceTree = "<group>"; };
 		8EC5044818FBBA5200A96867 /* MCManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MCManager.h; sourceTree = "<group>"; };
 		8EC5044918FBBA5200A96867 /* MCManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MCManager.m; sourceTree = "<group>"; };
+		8EC5044B18FBC80400A96867 /* SecondViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SecondViewController.h; sourceTree = "<group>"; };
+		8EC5044C18FBC80400A96867 /* SecondViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SecondViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -167,6 +170,8 @@
 				8EC503DA18F99FA200A96867 /* Main.storyboard */,
 				8EC503DD18F99FA200A96867 /* ViewController.h */,
 				8EC503DE18F99FA200A96867 /* ViewController.m */,
+				8EC5044B18FBC80400A96867 /* SecondViewController.h */,
+				8EC5044C18FBC80400A96867 /* SecondViewController.m */,
 				8EC5044718FBBA1700A96867 /* Multipeer Connectivity */,
 				613F22F618F9A6C000492EF4 /* Spotify */,
 				8EC503CF18F99FA200A96867 /* Supporting Files */,
@@ -314,6 +319,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8EC5044D18FBC80400A96867 /* SecondViewController.m in Sources */,
 				8EC503DF18F99FA200A96867 /* ViewController.m in Sources */,
 				616BBECA18FB06FD0089B842 /* MSLoadingView.m in Sources */,
 				6178396018F9BD9A00FD65CF /* MSSpotifySearchResultsCollectionController.m in Sources */,
