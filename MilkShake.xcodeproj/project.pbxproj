@@ -247,7 +247,7 @@
 				ORGANIZATIONNAME = "Daniel Rakhamimov";
 				TargetAttributes = {
 					8EC503C418F99FA200A96867 = {
-						DevelopmentTeam = T9EXD99MQU;
+						DevelopmentTeam = EG5CG224Q3;
 					};
 					8EC503E518F99FA200A96867 = {
 						TestTargetID = 8EC503C418F99FA200A96867;
@@ -444,7 +444,7 @@
 				INFOPLIST_FILE = "MilkShake/MilkShake-Info.plist";
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE = "D55F3036-102F-49B3-88B3-AC41461E5722";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -465,7 +465,7 @@
 				INFOPLIST_FILE = "MilkShake/MilkShake-Info.plist";
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE = "D55F3036-102F-49B3-88B3-AC41461E5722";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;
