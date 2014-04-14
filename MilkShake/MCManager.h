@@ -9,7 +9,7 @@
 #import <Foundation/Foundation.h>
 @import MultipeerConnectivity;
 
-@interface MCManager : NSObject
+@interface MCManager : NSObject <MCSessionDelegate>
 @property (nonatomic, strong) MCPeerID *peerID;
 @property (nonatomic, strong) MCSession *session;
 @property (nonatomic, strong) MCNearbyServiceBrowser *nearbyServiceBrowser;
