@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="5053" systemVersion="13C64" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="TwX-Qw-wbZ">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="5056" systemVersion="13C64" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="TwX-Qw-wbZ">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3733"/>
     </dependencies>
@@ -23,7 +23,7 @@
             </objects>
             <point key="canvasLocation" x="-169" y="-264"/>
         </scene>
-        <!--Second View Controller-->
+        <!--Second View Controller - Search-->
         <scene sceneID="kel-8T-IS4">
             <objects>
                 <viewController id="Nck-aC-5QV" customClass="SecondViewController" sceneMemberID="viewController">
@@ -48,10 +48,26 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1dA-6B-ZkN">
+                                <rect key="frame" x="85" y="406" width="151" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="This is some test data">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="sendTestData:" destination="Nck-aC-5QV" eventType="touchUpInside" id="1T4-zU-CEm"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
-                    <navigationItem key="navigationItem" id="4Nw-BI-H2Z"/>
+                    <navigationItem key="navigationItem" title="Search" id="JWf-pJ-ci1">
+                        <barButtonItem key="rightBarButtonItem" title="Test P2P" id="J2K-v7-vqh">
+                            <connections>
+                                <action selector="testP2P:" destination="Nck-aC-5QV" id="PsR-x5-lDe"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
                         <outlet property="testConnectedWithLabel" destination="jv9-k9-sI3" id="eF9-OG-pRy"/>
                     </connections>
@@ -156,13 +172,7 @@
                             <constraint firstItem="MsJ-As-hxt" firstAttribute="leading" secondItem="u7z-Ef-ytl" secondAttribute="leading" id="z51-BM-P8g"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" title="Search" id="0gg-M4-XoW">
-                        <barButtonItem key="rightBarButtonItem" title="Test P2P" id="Npp-s2-2Of">
-                            <connections>
-                                <action selector="testP2P:" destination="wZx-vv-uWD" id="33J-Xb-34R"/>
-                            </connections>
-                        </barButtonItem>
-                    </navigationItem>
+                    <navigationItem key="navigationItem" title="Search" id="0gg-M4-XoW"/>
                     <connections>
                         <outlet property="collectionView" destination="WZ7-HN-rfU" id="1Hm-jr-qK8"/>
                         <outlet property="loadingView" destination="37x-02-lXa" id="Kkk-yI-3pI"/>

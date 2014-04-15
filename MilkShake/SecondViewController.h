@@ -10,5 +10,6 @@
 
 @interface SecondViewController : UIViewController
 @property (weak, nonatomic) IBOutlet UILabel *testConnectedWithLabel;
+- (IBAction)sendTestData:(id)sender;
 
 @end

@@ -12,13 +12,24 @@ NSString *const kServiceType = @"ms-songshare";
 
 typedef void(^InvitationHandler)(BOOL accept, MCSession *session);
 
-@interface MCManager ()<MCNearbyServiceAdvertiserDelegate, MCNearbyServiceBrowserDelegate, UIAlertViewDelegate>
+@interface MCManager ()<MCNearbyServiceAdvertiserDelegate,  UIAlertViewDelegate>
 
 @property (copy, nonatomic) InvitationHandler handler;
 
 @end
 
 @implementation MCManager
+
+
++ (id)sharedManager {
+    static MCManager *sharedMyManager = nil;
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
+        sharedMyManager = [[self alloc] init];
+    });
+    return sharedMyManager;
+    
+}
 
 - (id)init {
     
@@ -38,13 +49,14 @@ typedef void(^InvitationHandler)(BOOL accept, MCSession *session);
     self.session = [[MCSession alloc]initWithPeer:self.peerID
                                  securityIdentity:nil
                              encryptionPreference:MCEncryptionNone];
+//    self.session.delegate = self;
     
 }
-- (void)setupMCBrowser {
+- (void)setupBrowser {
     
-//    self.nearbyServiceBrowser = [[MCNearbyServiceBrowser alloc]
-//                                 initWithPeer:self.peerID
-//                                 serviceType:k]
+    self.nearbyServiceBrowser = [[MCNearbyServiceBrowser alloc]
+                                 initWithPeer:self.peerID
+                                 serviceType:kServiceType];
     
 }
 - (void)advertiseSelf:(BOOL)shouldAdvertise {
@@ -61,15 +73,16 @@ typedef void(^InvitationHandler)(BOOL accept, MCSession *session);
 }
 
 #pragma mark - MCSession Delegate
-
-// Remote peer changed state
-- (void)session:(MCSession *)session peer:(MCPeerID *)peerID didChangeState:(MCSessionState)state {
-    
-}
-
-// Received data from remote peer
-- (void)session:(MCSession *)session didReceiveData:(NSData *)data fromPeer:(MCPeerID *)peerID {
-    
+/*
+//// Remote peer changed state
+//- (void)session:(MCSession *)session peer:(MCPeerID *)peerID didChangeState:(MCSessionState)state {
+//    [self.delegate sessionChangedState:state];
+//}
+//
+//// Received data from remote peer
+//- (void)session:(MCSession *)session didReceiveData:(NSData *)data fromPeer:(MCPeerID *)peerID {
+//    
+//    [self.delegate sessionDidRecieveData:data];
 }
 
 // Received a byte stream from remote peer
@@ -87,6 +100,7 @@ typedef void(^InvitationHandler)(BOOL accept, MCSession *session);
     
 }
 
+*/
 #pragma mark - MCNearbyServiceAdvertiserDelegate
 
 // Incoming invitation request.  Call the invitationHandler block with YES and a valid session to connect the inviting peer to the session.
@@ -103,17 +117,7 @@ typedef void(^InvitationHandler)(BOOL accept, MCSession *session);
     
 }
 
-#pragma mark - MCNearbyServiceBrowserDelegate
 
-// Found a nearby advertising peer
-- (void)browser:(MCNearbyServiceBrowser *)browser foundPeer:(MCPeerID *)peerID withDiscoveryInfo:(NSDictionary *)info {
-    
-}
-
-// A nearby peer has stopped advertising
-- (void)browser:(MCNearbyServiceBrowser *)browser lostPeer:(MCPeerID *)peerID {
-    
-}
 
 #pragma mark - UIAlertView Delegate
 

@@ -16,8 +16,10 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
     // Override point for customization after application launch.
-    self.mcManager = [[MCManager alloc]init];
-    
+   
+    [[MCManager sharedManager]setupPeerAndSessionWithDisplayName:[UIDevice currentDevice].name];
+    [[MCManager sharedManager] advertiseSelf:YES];
+
     return YES;
 }
 							
