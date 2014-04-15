@@ -13,7 +13,7 @@
 // Constants
 static NSString * const kClientId = @"spotify-ios-sdk-beta";
 static NSString * const kCallbackURL = @"spotify-ios-sdk-beta://callback";
-static NSString * const kTokenSwapURL = @"http://localhost:1234/swap";
+static NSString * const kTokenSwapURL = @"http://milkshakeapp.herokuapp.com/swap";
 
 @interface MSSpotifyViewController ()<SPTTrackPlayerDelegate>
 @property (nonatomic, strong) SPTTrackPlayer *trackPlayer;
