@@ -17,7 +17,8 @@
 {
     // Override point for customization after application launch.
    
-    [[MCManager sharedManager]setupPeerAndSessionWithDisplayName:[UIDevice currentDevice].name];
+    [[MCManager sharedManager]setupPeerWithDisplayName:[UIDevice currentDevice].name];
+    [[MCManager sharedManager]setupSession];
     [[MCManager sharedManager] advertiseSelf:YES];
 
     return YES;

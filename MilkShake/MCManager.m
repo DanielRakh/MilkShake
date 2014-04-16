@@ -43,15 +43,18 @@ typedef void(^InvitationHandler)(BOOL accept, MCSession *session);
     return self;
 }
 
-- (void)setupPeerAndSessionWithDisplayName:(NSString *)displayName {
+- (void)setupPeerWithDisplayName:(NSString *)displayName {
     
     self.peerID = [[MCPeerID alloc]initWithDisplayName:displayName];
-    self.session = [[MCSession alloc]initWithPeer:self.peerID
-                                 securityIdentity:nil
-                             encryptionPreference:MCEncryptionNone];
-//    self.session.delegate = self;
-    
 }
+
+- (void)setupSession {
+    
+    self.session = [[MCSession alloc]initWithPeer:self.peerID];
+    self.session.delegate = self;
+}
+
+
 - (void)setupBrowser {
     
     self.nearbyServiceBrowser = [[MCNearbyServiceBrowser alloc]
@@ -68,39 +71,53 @@ typedef void(^InvitationHandler)(BOOL accept, MCSession *session);
                                         serviceType:kServiceType];
         self.nearbyServiceAdvertiser.delegate = self;
         [self.nearbyServiceAdvertiser startAdvertisingPeer];
+    } else {
+        [self.nearbyServiceAdvertiser stopAdvertisingPeer];
+        self.nearbyServiceAdvertiser = nil;
     }
     
 }
 
 #pragma mark - MCSession Delegate
-/*
-//// Remote peer changed state
-//- (void)session:(MCSession *)session peer:(MCPeerID *)peerID didChangeState:(MCSessionState)state {
-//    [self.delegate sessionChangedState:state];
-//}
-//
-//// Received data from remote peer
-//- (void)session:(MCSession *)session didReceiveData:(NSData *)data fromPeer:(MCPeerID *)peerID {
-//    
-//    [self.delegate sessionDidRecieveData:data];
-}
 
-// Received a byte stream from remote peer
-- (void)session:(MCSession *)session didReceiveStream:(NSInputStream *)stream withName:(NSString *)streamName fromPeer:(MCPeerID *)peerID {
+- (void)session:(MCSession *)session peer:(MCPeerID *)peerID didChangeState:(MCSessionState)state {
+    
+    NSDictionary *userInfo = @{ @"peerID": peerID,
+                                @"state" : @(state) };
+    
+    dispatch_async(dispatch_get_main_queue(), ^{
+        [[NSNotificationCenter defaultCenter] postNotificationName:@"MCManagerDidChangeStateNotification"
+                                                            object:nil
+                                                          userInfo:userInfo];
+    });
     
 }
 
-// Start receiving a resource from remote peer
+- (void)session:(MCSession *)session didReceiveData:(NSData *)data fromPeer:(MCPeerID *)peerID {
+    
+    NSDictionary *userInfo = @{ @"data": data,
+                                @"peerID": peerID };
+    
+    dispatch_async(dispatch_get_main_queue(), ^{
+        [[NSNotificationCenter defaultCenter] postNotificationName:@"MCManagerDidRecieveDataNotification"
+                                                            object:nil
+                                                          userInfo:userInfo];
+    });
+    
+}
+
 - (void)session:(MCSession *)session didStartReceivingResourceWithName:(NSString *)resourceName fromPeer:(MCPeerID *)peerID withProgress:(NSProgress *)progress {
     
 }
 
-// Finished receiving a resource from remote peer and saved the content in a temporary location - the app is responsible for moving the file to a permanent location within its sandbox
 - (void)session:(MCSession *)session didFinishReceivingResourceWithName:(NSString *)resourceName fromPeer:(MCPeerID *)peerID atURL:(NSURL *)localURL withError:(NSError *)error {
     
 }
 
-*/
+- (void)session:(MCSession *)session didReceiveStream:(NSInputStream *)stream withName:(NSString *)streamName fromPeer:(MCPeerID *)peerID {
+    
+}
+
 #pragma mark - MCNearbyServiceAdvertiserDelegate
 
 // Incoming invitation request.  Call the invitationHandler block with YES and a valid session to connect the inviting peer to the session.

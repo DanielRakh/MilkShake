@@ -9,23 +9,16 @@
 #import <Foundation/Foundation.h>
 @import MultipeerConnectivity;
 
-@protocol MCManagerDelegate  <NSObject>
-
-//- (void)sessionChangedState:(MCSessionState)state;
-//- (void)sessionDidRecieveData:(NSData *)data;
-
-@end
-
 
 @interface MCManager : NSObject <MCSessionDelegate>
 @property (nonatomic, strong) MCPeerID *peerID;
 @property (nonatomic, strong) MCSession *session;
 @property (nonatomic, strong) MCNearbyServiceBrowser *nearbyServiceBrowser;
 @property (nonatomic, strong) MCNearbyServiceAdvertiser *nearbyServiceAdvertiser;
-//@property (nonatomic, weak) id <MCManagerDelegate> delegate;
 
 + (id)sharedManager;
-- (void)setupPeerAndSessionWithDisplayName:(NSString *)displayName;
+- (void)setupPeerWithDisplayName:(NSString *)displayName;
+- (void)setupSession;
 - (void)setupBrowser;
 - (void)advertiseSelf:(BOOL)shouldAdvertise;
 

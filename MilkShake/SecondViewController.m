@@ -8,9 +8,9 @@
 
 #import "SecondViewController.h"
 #import "MCManager.h"
+@import MultipeerConnectivity;
 
-@interface SecondViewController () <MCNearbyServiceBrowserDelegate, MCSessionDelegate>
-@property (nonatomic, strong) MCManager *mcManager;
+@interface SecondViewController () <MCNearbyServiceBrowserDelegate>
 @property (nonatomic, strong) NSMutableArray *peerIDArray;
 
 @end
@@ -31,12 +31,21 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     
-    self.mcManager = [MCManager sharedManager];
-    [self.mcManager setupBrowser];
-    self.mcManager.nearbyServiceBrowser.delegate = self;
-    self.mcManager.session.delegate = self;
+ 
+    [[MCManager sharedManager] setupBrowser];
+    [[[MCManager sharedManager] nearbyServiceBrowser]setDelegate:self];
     
     self.peerIDArray = [NSMutableArray array];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(peerChangedStateWithNotification:)
+                                                 name:@"MCManagerDidChangeStateNotification"
+                                               object:nil];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(handleReceivedDataWithNotification:)
+                                                 name:@"MCManagerDidRecieveDataNotification"
+                                               object:nil];
 
 
 }
@@ -47,9 +56,50 @@
     // Dispose of any resources that can be recreated.
 }
 
+- (void)peerChangedStateWithNotification:(NSNotification *)notification {
+    
+    int state = [[[notification userInfo] objectForKey:@"state"] intValue];
+    
+    switch (state) {
+        case MCSessionStateConnected:
+            NSLog(@"Session Connected");
+            self.testConnectedWithLabel.text = @"Connected";
+            break;
+        case MCSessionStateConnecting:
+            NSLog(@"Session Connecting");
+            self.testConnectedWithLabel.text = @"Connecting";
+
+            break;
+        case MCSessionStateNotConnected:
+            NSLog(@"Session not connected");
+            self.testConnectedWithLabel.text = @"Not Connected";
+
+            break;
+            
+        default:
+            break;
+    }
+}
+
+- (void)handleReceivedDataWithNotification:(NSNotification *)notification {
+    
+    // Get the user info dictionary that was received along with the notification.
+    NSDictionary *userInfoDict = [notification userInfo];
+    
+    // Convert the received data into a NSString object.
+    NSData *receivedData = [userInfoDict objectForKey:@"data"];
+    NSString *message = [[NSString alloc] initWithData:receivedData encoding:NSUTF8StringEncoding];
+    self.testConnectedWithLabel.text = message;
+    
+    // Keep the sender's peerID and get its display name.
+//    MCPeerID *senderPeerID = [userInfoDict objectForKey:@"peerID"];
+//    NSString *senderDisplayName = senderPeerID.displayName;
+    
+}
+
 #pragma mark - IBActions
 - (IBAction)testP2P:(id)sender {
-    [self.mcManager.nearbyServiceBrowser startBrowsingForPeers];
+    [[[MCManager sharedManager]nearbyServiceBrowser] startBrowsingForPeers];
     
 }
 
@@ -58,7 +108,7 @@
 
 - (void)browser:(MCNearbyServiceBrowser *)browser foundPeer:(MCPeerID *)peerID withDiscoveryInfo:(NSDictionary *)info {
     
-    [browser invitePeer:peerID toSession:self.mcManager.session withContext:nil timeout:15.0];
+    [browser invitePeer:peerID toSession:[[MCManager sharedManager]session] withContext:nil timeout:15.0];
 }
 
 // A nearby peer has stopped advertising
@@ -75,35 +125,7 @@
 }
 
 
-#pragma mark - MCSession Delegate Methods
 
-
-// Remote peer changed state
-- (void)session:(MCSession *)session peer:(MCPeerID *)peerID didChangeState:(MCSessionState)state {
-    
-    switch (state) {
-        case MCSessionStateConnected:
-            NSLog(@"Session Connected");
-            [self.peerIDArray addObject:peerID];
-            break;
-        case MCSessionStateConnecting:
-            NSLog(@"Session Connecting");
-            break;
-        case MCSessionStateNotConnected:
-            NSLog(@"Session not connected");
-            break;
-            
-        default:
-            break;
-    }
-}
-
-// Received data from remote peer
-- (void)session:(MCSession *)session didReceiveData:(NSData *)data fromPeer:(MCPeerID *)peerID {
-    
-    NSString *stringRecieved = [NSString stringWithUTF8String:[data bytes]];
-    self.testConnectedWithLabel.text = stringRecieved;
-}
 
 /*
 #pragma mark - Navigation
@@ -115,6 +137,10 @@
     // Pass the selected object to the new view controller.
 }
 */
+- (IBAction)disconnect:(id)sender {
+    
+    [[[MCManager sharedManager]session]disconnect];
+}
 
 - (IBAction)sendTestData:(UIButton *)sender {
     
@@ -123,6 +149,6 @@
     NSData *dataToSend = [stringToSend dataUsingEncoding:NSUTF8StringEncoding];
     
     NSError *error = nil;
-    [self.mcManager.session sendData:dataToSend toPeers:@[self.peerIDArray] withMode:MCSessionSendDataReliable error:&error];
+    [[[MCManager sharedManager] session] sendData:dataToSend toPeers:[[[MCManager sharedManager]session]connectedPeers] withMode:MCSessionSendDataReliable error:&error];
 }
 @end
