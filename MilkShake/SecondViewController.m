@@ -108,6 +108,7 @@
 
 - (void)browser:(MCNearbyServiceBrowser *)browser foundPeer:(MCPeerID *)peerID withDiscoveryInfo:(NSDictionary *)info {
     
+    DLog(@"Browser Found Peer");
     [browser invitePeer:peerID toSession:[[MCManager sharedManager]session] withContext:nil timeout:15.0];
 }
 
@@ -123,7 +124,6 @@
     
     NSLog(@"ERROR:%@",[error localizedDescription]);
 }
-
 
 
 

@@ -46,7 +46,10 @@ typedef void(^InvitationHandler)(BOOL accept, MCSession *session);
 - (void)setupPeerWithDisplayName:(NSString *)displayName {
     
     self.peerID = [[MCPeerID alloc]initWithDisplayName:displayName];
+    
 }
+
+
 
 - (void)setupSession {
     
